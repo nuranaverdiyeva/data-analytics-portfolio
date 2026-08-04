@@ -28,6 +28,14 @@ A collection of SQL and data analysis work, focused on business analytics, data 
 
 [View query](sql/quoted_vs_actual_treatment_analysis.sql)
 
+### Won Revenue by Visit Type and Market
+**Tool:** Zoho Analytics SQL
+**Context:** Monthly closed-won revenue and deal volume by market, split by 1st vs. 2nd visit
+**What it does:** Aggregates won-deal revenue and deal counts per market per month, breaking out 1st-visit and 2nd-visit totals alongside a combined summary, filtered to exclude partner-sourced deals and specific branch locations.
+**Key techniques:** Conditional aggregation (`CASE WHEN` + `SUM`), `COUNTIF`, multi-table `LEFT JOIN`s, multi-condition filtering, multi-column `GROUP BY`
+
+[View query](sql/won_revenue_by_visit_and_market.sql)
+
 ## Author
 
 Nurana Verdiyeva
