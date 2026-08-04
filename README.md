@@ -36,6 +36,14 @@ A collection of SQL and data analysis work, focused on business analytics, data 
 
 [View query](sql/won_revenue_by_visit_and_market.sql)
 
+### Month-over-Month Deal Size and Volume by Market
+**Tool:** Zoho Analytics SQL
+**Context:** July vs. June 2026 average deal size and deal volume, by market and visit type
+**What it does:** Calculates average deal size and deal count for July per market and visit type, alongside the percentage change versus June for both metrics, then appends a per-market "Total" rollup row across visit types via `UNION ALL`.
+**Key techniques:** Conditional aggregation (`CASE WHEN` + `SUM`), `COUNTIF`, `NULLIF` to guard against division by zero, month-over-month percentage change calculation, `UNION ALL` for combining detail and rollup rows
+
+[View query](sql/avg_deal_size_july_vs_june_by_market.sql)
+
 ## Author
 
 Nurana Verdiyeva
