@@ -44,6 +44,14 @@ A collection of SQL and data analysis work, focused on business analytics, data 
 
 [View query](sql/avg_deal_size_july_vs_june_by_market.sql)
 
+### EU Top Markets: Rolling 3-Month Revenue Trend
+**Tool:** Zoho Analytics SQL
+**Context:** Identifying and tracking the top-performing EU country/language markets over a trailing 3-month window
+**What it does:** Dynamically identifies the top 11 EU markets by trailing 3-month won revenue, then returns the monthly revenue and deal count trend for exactly those markets, using rolling relative dates rather than hardcoded date ranges.
+**Key techniques:** Correlated subquery with `LIMIT`, dynamic rolling date windows (`DATEADD`, `CURDATE()`), multi-table `LEFT JOIN`s, multi-column `GROUP BY`
+
+[View query](sql/eu_top_markets_3mo_revenue_trend.sql)
+
 ## Author
 
 Nurana Verdiyeva
