@@ -52,6 +52,14 @@ A collection of SQL and data analysis work, focused on business analytics, data 
 
 [View query](sql/eu_top_markets_3mo_revenue_trend.sql)
 
+### Cancellation Rate and Average Deal Size by Market
+**Tool:** Zoho Analytics SQL
+**Context:** Monthly cancellation rate and average deal size across five key markets
+**What it does:** Calculates the percentage of deals that did not close as "Won" (cancellation rate) alongside the average deal size restricted to full-treatment deals, per market, for a given month.
+**Key techniques:** Conditional aggregation (`CASE WHEN` + `SUM`), `COUNTIF`, `NULLIF` to guard against division by zero, multi-table `LEFT JOIN`s
+
+[View query](sql/cancellation_rate_and_avg_deal_size_by_market.sql)
+
 ## Author
 
 Nurana Verdiyeva
