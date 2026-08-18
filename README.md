@@ -60,6 +60,14 @@ A collection of SQL and data analysis work, focused on business analytics, data 
 
 [View query](sql/cancellation_rate_and_avg_deal_size_by_market.sql)
 
+### Crown Brand Share Pivot by Market
+**Tool:** Zoho Analytics SQL
+**Context:** Crown brand share, pivoted into one column per brand, per market, with a grand total rollup
+**What it does:** Uses a CTE to filter crown-category deals, then pivots each brand's share percentage into its own column per market, appending a "Grand Count" rollup row across all markets via `UNION ALL`.
+**Key techniques:** Common Table Expressions (`WITH`), conditional aggregation pivoted via `COUNTIF`, `UNION ALL` for combining detail and rollup rows
+
+[View query](sql/crown_brand_share_pivot_by_market.sql)
+
 ## Author
 
 Nurana Verdiyeva
