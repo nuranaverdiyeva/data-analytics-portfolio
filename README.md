@@ -1,80 +1,22 @@
 # Data Analytics Portfolio
 
-A collection of SQL and data analysis work, focused on business analytics, data pipelines, and reporting.
+A collection of SQL and data analysis work, focused on business analytics, data pipelines, and reporting. All queries are written in Zoho Analytics SQL against the Dentakay CRM data warehouse.
 
 ## SQL
 
-### Crown Brand Market Share Analysis
-**Tool:** Zoho Analytics SQL
-**Context:** Monthly crown brand performance analysis across five international markets
-**What it does:** Calculates crown product brand share percentage per market per month using window functions, alongside total quantity sold per brand, filtered by product category, brand, and branch location.
-**Key techniques:** Window functions (`SUM() OVER PARTITION BY`), multi-table JOINs, date range filtering, aggregation
-
-[View query](sql/crown_brand_analysis.sql)
-
-### Implant Brand Market Share Analysis
-**Tool:** Zoho Analytics SQL
-**Context:** Monthly implant brand performance analysis across five international markets
-**What it does:** Calculates implant brand share percentage per market per month using window functions, alongside total quantity sold per brand, filtered by product category, brand, and branch location.
-**Key techniques:** Window functions (`SUM() OVER PARTITION BY`), multi-table JOINs, date range filtering, aggregation with multi-column GROUP BY
-
-[View query](sql/implant_brand_share_analysis.sql)
-
-### Quoted vs. Actual Treatment Volume Analysis
-**Tool:** Zoho Analytics SQL
-**Context:** Comparing quoted treatment plan volumes against what was actually delivered, per deal, across treatment categories
-**What it does:** Uses two CTEs to pivot quoted and actual quantities into per-category columns via conditional aggregation, then joins them per deal to calculate the percentage change between quoted and actual for each category.
-**Key techniques:** Common Table Expressions (`WITH`), conditional aggregation (`CASE WHEN` + `SUM`), `LEFT JOIN` with `COALESCE` for null handling, `NULLIF` to guard against division by zero
-
-[View query](sql/quoted_vs_actual_treatment_analysis.sql)
-
-### Won Revenue by Visit Type and Market
-**Tool:** Zoho Analytics SQL
-**Context:** Monthly closed-won revenue and deal volume by market, split by 1st vs. 2nd visit
-**What it does:** Aggregates won-deal revenue and deal counts per market per month, breaking out 1st-visit and 2nd-visit totals alongside a combined summary, filtered to exclude partner-sourced deals and specific branch locations.
-**Key techniques:** Conditional aggregation (`CASE WHEN` + `SUM`), `COUNTIF`, multi-table `LEFT JOIN`s, multi-condition filtering, multi-column `GROUP BY`
-
-[View query](sql/won_revenue_by_visit_and_market.sql)
-
-### Month-over-Month Deal Size and Volume by Market
-**Tool:** Zoho Analytics SQL
-**Context:** July vs. June 2026 average deal size and deal volume, by market and visit type
-**What it does:** Calculates average deal size and deal count for July per market and visit type, alongside the percentage change versus June for both metrics, then appends a per-market "Total" rollup row across visit types via `UNION ALL`.
-**Key techniques:** Conditional aggregation (`CASE WHEN` + `SUM`), `COUNTIF`, `NULLIF` to guard against division by zero, month-over-month percentage change calculation, `UNION ALL` for combining detail and rollup rows
-
-[View query](sql/avg_deal_size_july_vs_june_by_market.sql)
-
-### EU Top Markets: Rolling 3-Month Revenue Trend
-**Tool:** Zoho Analytics SQL
-**Context:** Identifying and tracking the top-performing EU country/language markets over a trailing 3-month window
-**What it does:** Dynamically identifies the top 11 EU markets by trailing 3-month won revenue, then returns the monthly revenue and deal count trend for exactly those markets, using rolling relative dates rather than hardcoded date ranges.
-**Key techniques:** Correlated subquery with `LIMIT`, dynamic rolling date windows (`DATEADD`, `CURDATE()`), multi-table `LEFT JOIN`s, multi-column `GROUP BY`
-
-[View query](sql/eu_top_markets_3mo_revenue_trend.sql)
-
-### Cancellation Rate and Average Deal Size by Market
-**Tool:** Zoho Analytics SQL
-**Context:** Monthly cancellation rate and average deal size across five key markets
-**What it does:** Calculates the percentage of deals that did not close as "Won" (cancellation rate) alongside the average deal size restricted to full-treatment deals, per market, for a given month.
-**Key techniques:** Conditional aggregation (`CASE WHEN` + `SUM`), `COUNTIF`, `NULLIF` to guard against division by zero, multi-table `LEFT JOIN`s
-
-[View query](sql/cancellation_rate_and_avg_deal_size_by_market.sql)
-
-### Crown Brand Share Pivot by Market
-**Tool:** Zoho Analytics SQL
-**Context:** Crown brand share, pivoted into one column per brand, per market, with a grand total rollup
-**What it does:** Uses a CTE to filter crown-category deals, then pivots each brand's share percentage into its own column per market, appending a "Grand Count" rollup row across all markets via `UNION ALL`.
-**Key techniques:** Common Table Expressions (`WITH`), conditional aggregation pivoted via `COUNTIF`, `UNION ALL` for combining detail and rollup rows
-
-[View query](sql/crown_brand_share_pivot_by_market.sql)
-
-### Implant Brand Share Pivot by Market
-**Tool:** Zoho Analytics SQL
-**Context:** Implant brand share, pivoted into one column per brand, per market, with a grand total rollup
-**What it does:** Uses a CTE to filter implant-category deals, then pivots each brand's share percentage into its own column per market, appending a "Grand Count" rollup row across all markets via `UNION ALL`.
-**Key techniques:** Common Table Expressions (`WITH`), conditional aggregation pivoted via `COUNTIF`, `UNION ALL` for combining detail and rollup rows
-
-[View query](sql/implant_brand_share_pivot_by_market.sql)
+| Query | Description | Key Techniques |
+|---|---|---|
+| [Crown Brand Market Share](sql/crown_brand_analysis.sql) | Monthly crown brand share % per market, plus quantity sold | Window functions (`PARTITION BY`) |
+| [Implant Brand Market Share](sql/implant_brand_share_analysis.sql) | Monthly implant brand share % per market, plus quantity sold | Window functions (`PARTITION BY`) |
+| [Quoted vs. Actual Treatment Volume](sql/quoted_vs_actual_treatment_analysis.sql) | Compares quoted vs. delivered treatment volume by category, per deal | CTEs, conditional aggregation, `LEFT JOIN` + `COALESCE`, `NULLIF` |
+| [Won Revenue by Visit Type and Market](sql/won_revenue_by_visit_and_market.sql) | Monthly won revenue and deal volume, split by 1st vs. 2nd visit | Conditional aggregation, `COUNTIF`, multi-table joins |
+| [Month-over-Month Deal Size and Volume](sql/avg_deal_size_july_vs_june_by_market.sql) | July vs. June average deal size and volume, with a per-market rollup | Conditional aggregation, `NULLIF`, `UNION ALL` |
+| [EU Top Markets: 3-Month Revenue Trend](sql/eu_top_markets_3mo_revenue_trend.sql) | Identifies and tracks the top 11 EU markets by trailing 3-month revenue | Correlated subquery + `LIMIT`, dynamic rolling dates |
+| [Cancellation Rate & Avg Deal Size](sql/cancellation_rate_and_avg_deal_size_by_market.sql) | Monthly cancellation rate and average deal size by market | Conditional aggregation, `COUNTIF`, `NULLIF` |
+| [Crown Brand Share Pivot](sql/crown_brand_share_pivot_by_market.sql) | Crown brand share pivoted to one column per brand, with a grand total | CTE, `COUNTIF` pivot, `UNION ALL` |
+| [Implant Brand Share Pivot](sql/implant_brand_share_pivot_by_market.sql) | Implant brand share pivoted to one column per brand, with a grand total | CTE, `COUNTIF` pivot, `UNION ALL` |
+| [Crown Units Sold, Ranked](sql/crown_units_sold_by_market_ranked.sql) | Crown unit volume by brand and market, ranked by total units sold | CTE, `CASE` + `SUM` pivot, `ORDER BY` |
+| [Implant Units Sold, Ranked](sql/implant_units_sold_by_market_ranked.sql) | Implant unit volume by brand and market, ranked by total units sold | CTE, `CASE` + `SUM` pivot, `ORDER BY` |
 
 ## Author
 
