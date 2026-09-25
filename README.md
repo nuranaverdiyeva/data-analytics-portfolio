@@ -20,9 +20,8 @@ A collection of SQL and data analysis work, focused on business analytics, data 
 | [Crown Brand Quantity Pivot](sql/crown_brand_quantity_pivot_by_market.sql) | Crown brand quantity summed per market, one column per brand plus grand total | CTE, `CASE` + `SUM` pivot, `UNION ALL` |
 | [Implant Brand Quantity Pivot](sql/implant_brand_quantity_pivot_by_market.sql) | Implant brand quantity summed per market, one column per brand plus grand total | CTE, `CASE` + `SUM` pivot, `UNION ALL` |
 | [Lead Qualification Rate by Market/Month](sql/lead_qualification_rate_by_market_month.sql) | Monthly lead count, qualified lead count, and qualification rate by market | Conditional aggregation, `COUNTIF`, multi-table joins |
-| [Arrived Without Appointment](sql/arrived_without_appointment.sql) | *Guessed: walk-in patients who arrived without a scheduled appointment* | — |
-| [Second Visit Confirmed Revenue](sql/second_visit_confirmed_revenue.sql) | *Guessed: confirmed revenue from second-visit deals* | — |
-| [Slot Fill Rate](sql/slot_fill_rate.sql) | *Guessed: rate at which available appointment slots are filled* | — |
+| [Arrived Without Appointment](sql/arrived_without_appointment.sql) | Monthly arrivals per clinic branch and the share of patients who arrived without a confirmed appointment slot, limited to won deals | Conditional aggregation, `COUNT(DISTINCT CASE ...)`, `NULLIF`-free ratio with `ROUND` |
+| [Slot Fill Rate](sql/slot_fill_rate.sql) | Monthly slot fill rate per clinic branch, split by weekday slot block (Mon/Tue, Wed, Thu/Fri/Sat), with a separate capacity rule for the Seaside branch | `DAYOFWEEK` bucketing, conditional aggregation, capacity lookup via `MAX(CASE ...)` |
 
 ## Author
 
