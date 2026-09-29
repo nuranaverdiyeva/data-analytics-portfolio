@@ -23,6 +23,7 @@ A collection of SQL and data analysis work, focused on business analytics, data 
 | [Arrived Without Appointment](sql/arrived_without_appointment.sql) | Monthly arrivals per clinic branch and the share of patients who arrived without a confirmed appointment slot, limited to won deals | Conditional aggregation, `COUNT(DISTINCT CASE ...)`, `NULLIF`-free ratio with `ROUND` |
 | [Slot Fill Rate](sql/slot_fill_rate.sql) | Monthly slot fill rate per clinic branch, split by weekday slot block (Mon/Tue, Wed, Thu/Fri/Sat), with a separate capacity rule for the Seaside branch | `DAYOFWEEK` bucketing, conditional aggregation, capacity lookup via `MAX(CASE ...)` |
 | [Retreatment Complaints by Dental Problem and Cause](sql/retreatment_complaints_by_problem_and_cause.sql) | Monthly retreatment complaints per clinic branch, split by individual dental problem and classified as natural, patient-caused or procedure error | Multi-select field splitting with `SUBSTRING_INDEX`, numbers table via `CROSS JOIN`, `CASE` classification, nested subqueries |
+| [Hotel No-Show Rate](sql/hotel_no_show_rate_by_hotel.sql) | Monthly no-show rate per hotel, calculated as no-show nights divided by booked nights, excluding bookings cancelled in advance | Conditional aggregation, `DATEDIFF` night calculation, `NULLIF`, `COALESCE` filtering |
 
 ## Author
 
